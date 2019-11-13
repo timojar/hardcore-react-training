@@ -5,9 +5,13 @@ const PersonList = props => {
   const { persons, ...rest } = props;
   return (
     <div>
-      {persons.map(person => {
-        return <Person {...rest} key={person.id} person={person} />;
-      })}
+      {persons
+        .sortBy(p => p.firstName)
+        .sortBy(p => p.lastName)
+        .map(person => {
+          return <Person {...rest} key={person.id} person={person} />;
+        })
+        .reverse()}
     </div>
   );
 };
